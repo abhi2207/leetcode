@@ -1,0 +1,16 @@
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        h = {}
+        print (nums)
+        for i, num in enumerate(nums):
+            print (i,num)
+            n = target - num
+            print (n)
+            print (h)
+            if n not in h:
+                h[num] = i
+                print ("here")
+                print(h)
+            else:
+                print (n,h[n],i)
+                return [h[n], i]

@@ -1,0 +1,23 @@
+A time when you faced a problem that had multiple solutions
+When did you take a risk, make a mistake or fail? How did you respond?
+What did you do when you needed to motivate a group of individuals?
+
+There was recently a time when we had such an issue.
+There were around 2-10% of impressions missing in the hourly feed which we delivered. which was a potential of half to 1 million of dollars loss for the client a day. 
+It wasn't noticed since client was running test campaigns earlier. 
+After a lot of investigation, It turned out that we were dealing with a race condition.
+New impressions were processed every 20 min, insertions were also processed every 20 min but at different timings.
+Feed job was running hourly and delivering impressions which had matching insertions with a time window of last feed run to latest impression we have.
+This sliding window of delivery made sure in theory we deliver all impressions at least once.
+We were sliding the delivered window between with last adfeed time and latest impressions not accounting for insertion delays because of which were not delivering impressions with insertions not in till time of delivery 
+
+Teams came up with a solution to delay the feed job by sliding the window an hour later from latest impression to account for delayed insertions.
+This was easy and quick fix. Though there was a chance of still missing impressions of unknown %.
+I went in with a difficult approach but all cases accounted for solution where in we basically create add a new column in the athena table saving timestamp of each impresson which has matching insertions and we deliver any new record inserted in this athena table to ensure we deliver all records only once.
+Since it was an escalation, i and other team members simultaneously worked on both solutions.
+My turned out to be little more involving in testing but i ensured my logic accounted for all possible cases and all impressions delivered.
+We havent seen a single impression missed out from feed since.
+
+
+A time when you were 75% through a project, and you had to pivot strategy
+i have not seen this in any of my project where i was done 75% and then i had to pivot, though prolly i might have been 50% done and then pivot but to a certain point i was able to re use most of my original starategy.

@@ -1,0 +1,68 @@
+Eratosthenes - find prime numbers
+    prime = [True for i in range(n + 1)] 
+    p = 2
+    while (p * p <= n): 
+          
+        # If prime[p] is not changed, then it is a prime 
+        if (prime[p] == True): 
+              
+            # Update all multiples of p 
+            for i in range(p * 2, n + 1, p): 
+                prime[i] = False
+        p += 1
+
+Binary search tree
+
+class Node:
+    def __init__(self, info): 
+        self.info = info  
+        self.left = None  
+        self.right = None 
+        self.level = None 
+
+    def __str__(self):
+        return str(self.info) 
+
+class BinarySearchTree:
+    def __init__(self): 
+        self.root = None
+
+    def create(self, val):  
+        if self.root == None:
+            self.root = Node(val)
+        else:
+            current = self.root
+         
+            while True:
+                if val < current.info:
+                    if current.left:
+                        current = current.left
+                    else:
+                        current.left = Node(val)
+                        break
+                elif val > current.info:
+                    if current.right:
+                        current = current.right
+                    else:
+                        current.right = Node(val)
+                        break
+                else:
+                    break
+
+
+pre order 
+root, left, right
+in order
+left, root, right
+post order
+left, right, root
+        # left, root, right
+        res = []
+        if root:
+            res = res + self.inorderTraversal(root.left)
+            res.append(root.val)
+            res = res + self.inorderTraversal(root.right)
+        return res
+
+ breadth first
+ root, left, right
