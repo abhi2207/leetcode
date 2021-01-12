@@ -1,0 +1,26 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def zigzagLevelOrder(self, root: TreeNode) -> List[List[int]]:
+        left = True
+        result = deque()
+        x = deque([(root,0)])
+        while x:
+            node,d = x.popleft()
+            if node:
+                if len(result)<=d:
+                    result.append(deque())
+                    left = (not left)
+                if left:
+                    result[d].appendleft(node.val)
+                if not left:
+                    result[d].append(node.val)
+                if node.left:
+                    x.append((node.left,d+1))
+                if node.right:
+                    x.append((node.right,d+1))
+        return result

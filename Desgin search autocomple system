@@ -1,0 +1,84 @@
+class TrieNode:
+    def __init__(self, val='.'):
+        self.val = val
+        self.neibs = dict()
+        self.sentence_indices = set()
+    
+    def get_top_3_sentences(self, trie, acs):
+        
+        candidates = []
+        for sent in self.sentence_indices:
+            sentence = trie.sentences[sent]
+            freq = acs.sentence_map[sentence][1]
+            candidates.append([sentence, freq]) 
+            
+        if candidates:
+            candidates.sort(key = lambda x: (-x[1], x[0]))
+        
+        return [i for i,j in candidates[:3]]
+    
+class Trie:
+    def __init__(self):
+        self.root = TrieNode()
+        self.sentences = []
+
+    def insert(self, sent_index):
+        self.insert_by_char(self.root, sent_index, 0)
+
+    def insert_by_char(self, node, sent_index, word_index):
+        sentence = self.sentences[sent_index]
+        ch = sentence[word_index]
+
+        if ch not in node.neibs:
+            node.neibs[ch] = TrieNode(ch)
+
+        next_node = node.neibs[ch]
+        next_node.sentence_indices.add(sent_index)
+
+        if word_index==len(sentence)-1:
+            return
+
+        self.insert_by_char(node.neibs[ch], sent_index, word_index+1)
+
+class AutocompleteSystem:
+
+    def __init__(self, sentences: List[str], times: List[int]):
+        from collections import defaultdict
+        self.sentence_map = defaultdict(list)
+
+        self.trie = Trie()
+        self.trie.sentences = sentences
+
+        for sent_index, freq in enumerate(times):
+            sentence = self.trie.sentences[sent_index]
+            self.sentence_map[sentence] = [sent_index, freq]
+            self.trie.insert(sent_index)
+
+        self.prev = []
+        self.curr = self.trie.root
+
+    def input(self, c: str) -> List[str]:
+        if c == '#':
+            new_sentence = "".join(self.prev)
+            if  new_sentence not in self.sentence_map:
+                self.trie.sentences.append(new_sentence)
+                self.sentence_map[new_sentence]= [len(self.trie.sentences)-1, 1]
+            else:
+                self.sentence_map[new_sentence][1]+=1
+
+            self.trie.insert(self.sentence_map[new_sentence][0])
+            self.prev = []
+            self.curr = self.trie.root
+            return []
+            
+        else:
+            self.prev.append(c)
+            if c not in self.curr.neibs:
+                new_node = TrieNode(c)
+                self.curr.neibs[c]=new_node
+            self.curr = self.curr.neibs[c]
+            return self.curr.get_top_3_sentences(self.trie, self)
+
+# Your AutocompleteSystem object will be instantiated and called as such:
+# obj = AutocompleteSystem(sentences, times)
+# param_1 = obj.input(c)
