@@ -1,3 +1,139 @@
+Pitch 
+I am  currently working as lead data engineer in Comcast for 2 years, before that i was a sr software engineer, 
+I have wore multiple hats in this company, starting from Hadoop Admin (software eng), to Sr. software eng taking scrum master responsibilities and then becoming the lead of the same team with in 3 years. 
+I still manage Hadoop cluster along with AWS env for my project.
+I have been leading the migration project from Hadoop based arch to AWS based architecture. From dev to deployment, maintenance to implementing new features, and actual dev work, I have been involved in everything.
+Also, involved in 3 other projects, at various levels, as in maintaining, issue resolutions and new architecture designs, migration.
+The combined total business revenue from these 4 projects is around 100m$.
+I have also taken ownership of all product related issues and any deployment be it small or big changes.
+Also coordinating with Beijing team for my new project which had a business potential of at least 5m$ in the next year though its projected to go higher.
+I have started a new optimization initiative across all 4 projects last year. My recent contributions towards this initiative include More than 300k in cost saving by Optimizations done by me in AWS costs savings as well as upto 80% job optimization in some cases with in last year.
+This has encouraged team to come up with more ideas to do this.
+Also involved in CCOE(Cloud Center of Excellence) best practices.
+
+Performance and contribution over time:
+
+Being lead engineer of Turbine team, I have been leading the migration project from System A to C. From dev to deployment, maintenance to implementing new features, and actual dev work, I have been involved in everything.
+
+-       Highest number (50+) of tickets completed in the team
+
+-       Achieved 95% completion rate on all the assigned tickets within sprint
+
+-       Single handedly resolved more than 64% escalation (out of total 121 ESC in the team)
+
+-       Highest number of prod deployments(20+) in the team
+
+-       Improved efficiency of team in handling issues by writing procedures for NOC to handle the repeated issues and get faster responses to client
+
+-       Owned/Managed key systems (System A and System C) used for deliverables for Altice/Charter Household project
+
+-       Maintained Hadoop cluster and AWS env and all related infrastructure
+
+-       Undertaken several Initiatives like test coverage and optimizations on jobs performance
+
+-       Took ownership of Code reviews and deployment
+
+-       Coded several scala programs and deployed new jobs to production
+
+-       Designing and owning the new project of LMD - Architected and Created data pipe line
+
+-       Working with Beijing team and coordinating the LMD project with different teams.
+
+-       Setting up looker for LMD for all 3 envs
+
+-       Use my experience to find good solutions and share with team and worked with team to find long term resolution instead of just short term measures
+
+-       Took over scrum master responsibilities
+
+-       Working with CCOE to tag resources in AWS to account for cost per product
+
+-       Added tags to all Household project to track usage for each product
+
+ 
+
+Besides Household project, I have made significant contributions in LMD and AX projects.
+
+-       Created architecture the data pipe line for LMD
+
+-       Reduced security vulnerabilities by upgrading looker for AX
+
+-       Resolved issues related to Nielsen data ingestion
+
+ 
+
+ 
+
+Business impact:
+
+-       More than 300k in cost saving by Optimizations done by me in AWS costs savings.
+
+-       Improved performance for multiple jobs (Tableau reporting, Adfeed, Delta Profiles, STB_universe etc.) up to 80%.
+
+-       LMD – working on a project with high company visibility and high potential revenue next year.
+
+ 
+
+ 
+
+Skills upgradation:
+
+-       Improved performance of multiple jobs by learning from Databricks conference.
+
+-       Implemented best practices for AWS from knowledge gained while attending relevant conferences (AWS re invent, AWS insights, google etc)
+
+-       Improved coding skills in scala and python by working on multiple projects and learning from various online courses available to freewheel.
+
+-       Explored latest trends in big data analytics by attending ML/Machine training in imdata and AWS re invent conferences.
+
+ 
+
+ 
+
+Visibility:
+
+-       Presented Optimization 101 on improving performance of household jobs on multiple platforms within company and outside organization like data analytics group
+
+-       Given several sprint Demos to the team to share best practices on optimizations, AWS and improve learning.
+
+ 
+
+ 
+
+Coaching/Mentorship:
+
+-       Responsible for reviewing, contributing, supporting all HighYield ESC's and all dev work which has been planned, executed and deployed in last 3 year.
+
+-       Leading the team by example in taking ownership of dev work, issues and ESC’s
+
+-       Delivered multiple trainings to all New turbine team members to equip them with relevant skills to work on dev work or resolve issues
+
+-       Several demos to team to showcase the work or new opportunities for improvement
+
+-       Nominated and coached new members of team to lead scrum meetings to help them improve their understanding of the projects running with in the team
+
+-       Mentored new comers in team for Lab projects
+
+
+Customer obsession:
+situation: 
+We were assinged to build a tool called fazal, which was an enrollment system which validates files.
+While migration of mainframe based system in CVS, we were facing a lot of issues with the input data.
+The enrollment data was incorrect, with invalid values, groups, invalid characters etc.
+we were spending a lot of time fixing input files and issues while enrollment.
+Action:
+We realized there were at least 10 very common issues with input data including invlaid values
+a quick e.g. would be there were a few mandatory fields needed but with special checks on values.
+The system was outright rejecting these files since it was desinged to be compatible with tool rather than mainframe based system.
+I proposed an idea of pre processing the files to my manager and then to client manager.
+Started working on templates of bad data.
+then incorporated that in the script which runs on a dir where all the input files were stored.
+this resulted in elimiating bad records files with in few mins.
+THe overall yearly cost saving because of this pre processing was close to $35m.
+Mostly saving cost in fines which could have incurred with bad enrollment and delayed enrollment.
+The project was a hightlight for my company that year and i also presented that to client.
+THis resulted in extended contract for my company at that time 
+
+
 A time when you faced a problem that had multiple solutions
 When did you take a risk, make a mistake or fail? How did you respond?
 What did you do when you needed to motivate a group of individuals?
