@@ -1,3 +1,15 @@
+If you look at the list above with the multiplication you'll notice we are repeating multiplications, such as 2 times 3 or 3 times 4 for multiple entries in the new list.
+
+We'll want to take a greedy approach and keep track of these results for later re-use at other indices. We'll also need to think about what if a number is zero!
+
+In order to find the products of all the integers (except for the integer at that index) we will actually go through our list twice in a greedy fashion.
+
+On the first pass we will get the products of all the integers before each index, and then on the second pass we will go backwards to get the products of all the integers after each index.
+
+Then we just need to multiply all the products before and after each index in order to get the final product answer!
+
+Let's see this in action:
+
 def index_prod(lst):
     
     # Create an empty output list
