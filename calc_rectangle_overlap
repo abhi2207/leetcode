@@ -1,3 +1,16 @@
+This is a problem where it helps a lot to draw out your thinking. There are a few things we will need to think about:
+
+How can we determine an intersection?
+What if a rectangle is fully inside another rectangle?
+What if there is no intersection, but the rectangles share an edge?
+The key to solving this problem is to break it up in to sub-problems. We can split up the problem into an x-axis problem and a y-axis problem.
+
+We will create a function that can detect overlap in 1 dimension. Then we will split the rectangles into x and width, and y and height components. We can then determine that if there is overlap on both dimensions, then the rectangles themselves intersect!
+
+In order to understand the calc_overlap function, draw out two flat lines and follow along with the function and notice how it detects an overlap!
+
+Let's begin by creating a general function to detect overlap in a single dimension:
+
 def calc_rectangle_overlap(coor1,dim1,coor2,dim2):
     """
     Takes in 2 coordinates and their length in that dimension
@@ -22,3 +35,18 @@ def calc_rectangle_overlap(coor1,dim1,coor2,dim2):
     overlap = lower-greater
     
     return (greater,overlap)
+
+def calc_rect_overlap(r1,r2):
+    
+    
+    x_overlap, w_overlap = calc_overlap(r1['x'],r1['w'],r2['x'],r2['w'])
+    
+    y_overlap, h_overlap = calc_overlap(r1['y'],r1['h'],r2['y'],r2['h'])
+    
+    # If either returned None tuples, then there is no overlap!
+    if not w_overlap or not h_overlap:
+        print 'There was no overlap!'
+        return None
+    
+    # Otherwise return the dictionary format of the overlapping rectangle
+    return { 'x':x_overlap,'y': y_overlap,'w':w_overlap,'h':h_overlap}
