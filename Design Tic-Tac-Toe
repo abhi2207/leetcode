@@ -71,3 +71,34 @@ At most n2 calls will be made to move.
 Could you trade extra space such that move() operation can be done in O(1)?
    Hide Hint #2  
 You need two arrays: int rows[n], int cols[n], plus two variables: diagonal, anti_diagonal.
+
+Some considerations to limit the search and determine the output:
+
+We know the potential winner by the "odd-even-ness" of the total move number
+odd → "A"
+even → "B"
+We can limit our checks to moves made by the one who made the last move
+moves[::-2] backwards from the last in steps of 2
+
+
+class Solution:
+    def tictactoe(self, moves: List[List[int]]) -> str:
+        m = len(moves)
+		
+		# Potential winner: only the one making the last move
+        pot = ("B", "A")[m % 2]  
+        
+        cols, rows, diags = (Counter() for _ in range(3))
+		
+        # we only consider the potential winner's moves
+        for r, c in moves[::-2]:  
+            cols[c] += 1
+            rows[r] += 1
+            diags[0] += (r==c)
+            diags[1] += (r==2-c)
+        
+		# we have a winner if any count is 3
+        if any(c and c.most_common(1)[0][1] == 3 for c in (cols, rows, diags)):
+            return pot
+        
+        return "Pending" if m < 9 else "Draw"	
