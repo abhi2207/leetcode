@@ -1,0 +1,140 @@
+Q what %age of products have both non fat and trans fat.
+with flag_total as (
+    Select 
+        SUM (CASE when is_low_fat_flg =1 and is_recyclable_flg =1 then 1 else 0 end) as flag_count,
+        count(distinct product_id) as prod_count
+   from products
+ )
+    select 
+      	profile_count/ prod_count * 100
+ 	from flag_total
+
+
+Q find top 5 sales products having promotions
+
+select product_id
+from sales
+where promotion_id is not null
+group by product_id
+order by sum(units_sold * store_cost) desc
+limit 5
+
+
+Q what %age of sales happened on first and last day of the promotion
+
+Mysql was used and interviewer asked to if this can be done without subquery.
+SELECT Round(Sum(
+CASE
+WHEN Min(start_date) = transaction_date THEN 1
+WHEN Max(end_date) = transaction_date THEN 1
+ELSE 0
+END) * 100/ Count(), 2)
+FROM sales s
+JOIN promotions p 
+where s.promotion_id = p.promotion_id
+
+
+with promo_sales as
+(
+select
+    sum(store_sales) as prom_sales
+from sales
+where transaction_date in ((select min(start_date) from promotions),(select max(end_date) from promotions))
+)
+select 
+   prom_sales/select sum(store_sales) from sales * 100
+from promo_sales
+
+
+Q Which product had the highest sales with promotions and sales ( basically a where clause on 2 flags)
+
+select product_name, sum(store_sales) as sales
+from sales s
+join products p
+on s.product_id = p.product_id
+where promotion_id is not null
+group by product_id
+order by sales desc
+LIMIT 1
+
+Q What are the top five (ranked in decreasing order) single-channel media types that correspond to the most money the grocery chain had spent on its promotional campaigns?
+select media_type
+from promotions
+order by cost desc
+limit 5
+
+
+Q the proportion of valid sales that occurred on certain dates.
+select
+sum(case when transaction_date = 'certain_date' then 1 end)/count(*)
+from sales
+where valid sales
+
+
+Q Manager want to analyze the how the promotions on certain products are performing.find how the the percent of promoted sales?
+count of promoted sales* 100 /total sale
+
+with prom_sale
+as
+	(select 
+	    product_id, sum(store_sales) as prom_sale
+		from product prod
+		join promotions prom
+			on  prod.promotion_id = prom.promotion_id),
+		tot_sale as (
+		select 
+	    	product_id,
+	    	sum(store_sales) as tot_sale
+		from product prod
+		)
+select 
+     product_id,
+     prom_sale/tot_sale * 100
+from prom_sale ps
+join tot_sale ts
+on ps.product_id = ts.product_id
+where ps.product_id = 'certain product'
+
+Q Get the top3 product class_id by the total sales.
+select product_class_id
+from product join sales on product_id
+order by sum(units * store_cost) desc
+limit 3
+
+
+find common word in sentences
+s1 = 'The blue whales are a whale which is blue.'
+s2 = 'The blue ocean has whales which are blue.'
+
+l1 = s1.split()
+l2 = s2.split()
+
+for i in l1:
+    if i in l2:
+        print(i)
+
+
+count number of chars
+count = 0
+  
+for i in test_str: 
+    if i == 'e': 
+        count = count + 1
+
+Python:-
+[1,None,1,2,None} --> [1,1,1,2,2]
+Ensure you take care of case input[None] which means None object.
+ls = [1,None,2,3,None,None,5,None]
+tmp = 0
+rs = []
+for i in ls:
+    if i is not None:
+        rs.append(i)
+        tmp = i
+    else:
+        rs.append(tmp)
+print (rs)
+
+
+
+find s in missisipi.  
