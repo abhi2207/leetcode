@@ -138,3 +138,17 @@ print (rs)
 
 
 find s in missisipi.  
+lst = "missisipi"
+count = 0
+for i in lst:
+	if i == 's':
+		count+=1
+
+print (count)
+
+out = []
+for i, k in enumerate(lst):
+	if k == 's':
+		out.append(i)
+
+print (out)
