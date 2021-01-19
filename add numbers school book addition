@@ -18,6 +18,6 @@ class Solution(object):
 
 Complexity Analysis
 
-Time Complexity: O(\max(N, \log K))O(max(N,logK)) where NN is the length of A.
+Time Complexity: O(max(N,logK)) where NN is the length of A.
 
-Space Complexity: O(\max(N, \log K))O(max(N,logK)).
+Space Complexity: O(max(N,logK)).

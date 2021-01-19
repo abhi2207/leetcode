@@ -1,0 +1,51 @@
+Intuition
+
+The question can be summarized as "What is the smallest k for which B is a substring of A * k?" We can just try every k.
+
+Algorithm
+
+Imagine we wrote S = A+A+A+.... If B is to be a substring of S, we only need to check whether some S[0:], S[1:], ..., S[len(A) - 1:] starts with B, as S is long enough to contain B, and S has period at most len(A).
+
+Now, suppose q is the least number for which len(B) <= len(A * q). We only need to check whether B is a substring of A * q or A * (q+1). If we try k < q, then B has larger length than A * q and therefore can't be a substring. When k = q+1, A * k is already big enough to try all positions for B; namely, A[i:i+len(B)] == B for i = 0, 1, ..., len(A) - 1.
+
+
+class Solution(object):
+    def repeatedStringMatch(self, A, B):
+        q = (len(B) - 1) // len(A) + 1
+        for i in range(2):
+            if B in A * (q+i): return q+i
+        return -1
+
+        
+
+Boyer-Moore string search algorithm
+
+class Solution:
+    def repeatedStringMatch(self, a: str, b: str) -> int:
+        m = math.ceil(len(b) / len(a)) # time: O(1)
+        
+        if b in a * m: 
+   # time: O(A * B/A + B^2) -> O(B + B^2)
+            return m
+        elif b in a * (m + 1): 
+    # time: O(A * B/A + B) -> O(B + B^2)
+            return m + 1
+        else:
+            return -1
+
+Here's my in-line time complexity analysis for Python:
+
+Key points
+
+A * m takes A * B/A in the worse case
+B in A takes O(AB) time in the worst case in Python. 
+The Boyer-Moore string search algorithm is being used behind the scenes.
+
+
+Complexity Analysis
+
+# time complexity: O(B + B^2)
+# space complexity: O(B)
+
+
+Prolly hash (rolling hash) time complexity O(M+N) and space O(1)

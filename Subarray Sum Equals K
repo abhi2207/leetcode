@@ -1,0 +1,51 @@
+Subarray Sum Equals K
+Given an array of integers nums and an integer k, return the total number of continuous subarrays whose sum equals to k.
+
+class Solution:
+    def subarraySum(self, nums, k: int) -> int:
+        """
+        Given an array nums and a subarray target sum k, this
+        program uses a hash table and a single pass through nums
+        to determine the number of subarray sums equal to k.
+
+        :param nums: array of integers
+        :type nums:list[int]
+        :param k: target sum
+        :type k: int
+        :return: total number of continuous subarrays whose sum
+                 equals to k
+        :rtype: int
+        """
+        
+        """
+        Initialize:
+        - sums_count: stores the number of times each accumulative
+                      sum of nums occurs. For an index m, the
+                      accumulative sum is sum([nums[0], ..., nums[m]]).
+        - k_count is the number of time a subarray of sum k is
+          found. It is the return value from this program.
+        """
+        sums_count = defaultdict(int)
+        sums_count[0] = 1
+        k_count = 0
+        
+        """
+        Determine the number of subarrays whose sum is k in one
+        pass through nums.
+        - nums_sum stores the accumulated sum up to num, the
+          current value in nums.
+        - For the current value of num_sums, k_count is increased
+          by the number of times num_sums - k has previously
+          occurred.
+        """
+        nums_sum = 0
+        for num in nums:
+            nums_sum += num
+            k_count += sums_count[nums_sum - k]
+            sums_count[nums_sum] += 1
+        return k_count
+
+**Complexity Analysis**
+Time complexity : O(n). The entire numsnums array is traversed only once.
+
+Space complexity : O(n). Hashmap mapmap can contain upto n distinct entries in the worst case.
