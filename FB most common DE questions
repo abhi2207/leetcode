@@ -1,3 +1,18 @@
+Q assuming that media type is a brand_name */
+What are the top five (ranked in decreasing order) single-channel media types that correspond to the most money
+the grocery chain had spent on its promotional campaigns?  
+
+Select Sum(s.store_sales), brand_name, count(p.product_id)
+from products p inner join
+sales s p.product_id = s.product_id
+where promotion_id is not null
+group by brand_name
+having count(p.product_id) =1 /* single-channel media type */
+order by 1 desc
+limit 5
+
+
+
 Q what %age of products have both non fat and trans fat.
 with flag_total as (
     Select 

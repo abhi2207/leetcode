@@ -39,6 +39,7 @@ print ("The list from number is " + str(res))
 
 This is a problem I have from my homework assignment and I am stumped at how to find the the largest/smallest numbers and cut them out of the list. Here is what I have so far. and It works for 10/14 the scenarios that I have to pass.. I think it is just because it grabs the median
 
+This just adds everything in and removes the max and min at the end.
 
     max_value = nums[0]
     min_value = nums[0]
